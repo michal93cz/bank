@@ -3,9 +3,9 @@ from bank_product import BankProduct
 
 class BankAccount(BankProduct):
 
-    def __init__(self, starting_money):
-        print('Creating new bank account with ' + str(starting_money))
-        self._account_balance = starting_money
+    def __init__(self, userId, productId):
+        self._account_balance = 0
+        BankProduct.__init__(self, user_id = userId, product_id = productId)
 
     def close_product(self):
         pass

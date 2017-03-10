@@ -1,27 +1,9 @@
-class BankAccount:
-    def __init__(self):
-        self.balance = 0
+from bank import Bank
 
-    def withdraw(self, amount):
-        self.balance -= amount
-        return self.balance
+newBank = Bank()
 
-    def deposit(self, amount):
-        self.balance += amount
-        return self.balance
+myClient = newBank.makeClient(1)
+myAccount = newBank.makeAccount(myClient.getId(), 4)
 
-class MinimumBalanceAccount(BankAccount):
-    def __init__(self, minimum_balance):
-        BankAccount.__init__(self)
-        self.minimum_balance = minimum_balance
-
-    def withdraw(self, amount):
-        if self.balance - amount < self.minimum_balance:
-            print('Sorry, minimum balance must be maintained.')
-        else:
-            BankAccount.withdraw(self, amount)
-
-a = BankAccount()
-b = BankAccount()
-b.deposit(50)
-print(b.withdraw(10))
+myAccount.deposit_money(100)
+myAccount.withdraw(120)
