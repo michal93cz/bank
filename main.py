@@ -17,11 +17,11 @@ class MinimumBalanceAccount(BankAccount):
 
     def withdraw(self, amount):
         if self.balance - amount < self.minimum_balance:
-            print 'Sorry, minimum balance must be maintained.'
+            print('Sorry, minimum balance must be maintained.')
         else:
             BankAccount.withdraw(self, amount)
 
 a = BankAccount()
 b = BankAccount()
 b.deposit(50)
-print b.withdraw(10)
+print(b.withdraw(10))
