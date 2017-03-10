@@ -6,4 +6,4 @@ myClient = newBank.makeClient(1)
 myAccount = newBank.makeAccount(myClient.getId(), 4)
 
 myAccount.deposit_money(100)
-myAccount.withdraw(120)
+myAccount.withdraw(35)
