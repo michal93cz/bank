@@ -1,12 +1,10 @@
 from bank_product import BankProduct
+
+
 class BankAccount(BankProduct):
-    _account_balance = 0
 
     def __init__(self, starting_money):
         self._account_balance = starting_money
-
-    def create_product(self):
-        pass
 
     def close_product(self):
         pass
