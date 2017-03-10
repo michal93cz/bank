@@ -2,17 +2,20 @@ from bank_product import BankProduct
 
 
 class BankAccount(BankProduct):
-
-    def __init__(self, userId, productId):
+    def __init__(self, user_id, product_id):
         self._account_balance = 0
-        BankProduct.__init__(self, user_id = userId, product_id = productId)
+        BankProduct.__init__(self, user_id=user_id, product_id=product_id)
 
     def close_product(self):
         pass
 
     def withdraw(self, money):
         if money > self._account_balance:
-            print('Not enough money for withdraw')
+            print('Not enough money for withdraw.')
+            return
+        if money < 1:
+            print('Money which you want to withdraw must be greater than zero!')
+            return
         self._account_balance -= money
         print('Withdraw ' + str(money))
         return money
