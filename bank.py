@@ -24,3 +24,24 @@ class Bank:
         account = BankAccount(userId, productId)
         self.products.append(account)
         return account
+
+    def getUserProducts(self, userId):
+        userProducts = []
+        for product in self.products:
+            if product.getOwner() == userId:
+                userProducts.append(product)
+
+        return userProducts
+
+    def getUserProducts(self, userId, type):
+        userProducts = []
+        for product in self.products:
+            if product.getOwner() == userId and product.getType() == type:
+                userProducts.append(product)
+
+        return userProducts
+
+    def getUserProduct(self, userId, id):
+        for product in self.products:
+            if product.getOwner() == userId and product.getId() == id:
+                return product

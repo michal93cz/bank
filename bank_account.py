@@ -4,7 +4,7 @@ from bank_product import BankProduct
 class BankAccount(BankProduct):
     def __init__(self, user_id, product_id):
         self._account_balance = 0
-        BankProduct.__init__(self, user_id=user_id, product_id=product_id)
+        BankProduct.__init__(self, user_id=user_id, product_id=product_id, type='account')
 
     def close_product(self):
         pass
