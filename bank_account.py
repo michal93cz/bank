@@ -30,6 +30,7 @@ class BankAccount(BankProduct):
         print('Deposit ' + str(money))
         rest = self.debit.cut_debit(money)
         self._account_balance += rest
+        return money
 
     def current_account_balance(self):
         print('Current account balance is ' + str(self._account_balance-self.debit.get_current_debit()))
