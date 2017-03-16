@@ -1,0 +1,8 @@
+Klasa debet:
+    - egzekwowaniem spłaty debetu chyba musi zająć się inna klasa. Ja bym zrobił to tak, że debet musi być spłacony
+    jedynie przed zamknięciem konta. Na razie zrobiłem to w klasie BankAccount.
+
+Klasa bank_account:
+    - przyjąłem, że stan konta nie może być ujemny, a informacja o debecie przechowywania jest w oddzielnym obiekcie
+    (chodzi o późniejsze naliczanie odsetek od tej kwoty). Zmieniłem działąnie metody current_account_balance tak, żeby
+    to uwzględniała. Mam nadzieję, że niczego tym nie popsułem (nie zauważyłem takiego czegoś).

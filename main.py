@@ -14,3 +14,13 @@ myAccount.withdraw(35)
 newBank.getUserProduct(MY_ID, ACCTUAL_ACCOUNT_ID).withdraw(25)
 print(newBank.getUserProduct(MY_ID, ACCTUAL_ACCOUNT_ID).current_account_balance())
 print(newBank.getUserProducts(MY_ID, 'account')[0].getOwner())
+
+# extend debit
+newBank.getUserProduct(MY_ID, ACCTUAL_ACCOUNT_ID).withdraw(70)
+print(newBank.getUserProduct(MY_ID, ACCTUAL_ACCOUNT_ID).current_account_balance())
+newBank.getUserProduct(MY_ID, ACCTUAL_ACCOUNT_ID).withdraw(70)
+print(newBank.getUserProduct(MY_ID, ACCTUAL_ACCOUNT_ID).current_account_balance())
+
+# cut debit
+myAccount.deposit_money(100)
+print(newBank.getUserProduct(MY_ID, ACCTUAL_ACCOUNT_ID).current_account_balance())
