@@ -17,8 +17,14 @@ class Bank:
     def getClients(self):
         return self.clients
 
-    def getAccounts(self):
+    def getProducts(self):
         return self.products
+
+    def getRaports(self):
+        return self.raports
+
+    def getHistory(self):
+        return self.history
 
     def makeAccount(self, userId, productId):
         account = BankAccount(userId, productId)
@@ -33,10 +39,10 @@ class Bank:
 
         return userProducts
 
-    def getUserProducts(self, userId, type):
+    def getUserAccounts(self, userId):
         userProducts = []
         for product in self.products:
-            if product.getOwner() == userId and product.getType() == type:
+            if product.getOwner() == userId and product.getType() == 'account':
                 userProducts.append(product)
 
         return userProducts
