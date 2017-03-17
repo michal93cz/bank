@@ -4,11 +4,11 @@ from bank_product import BankProduct
 
 class Investment(BankProduct):
 
-    def __init__(self, date, amount, interest, end_date):
+    def __init__(self, date, amount, interest, user_id, product_id):
         self._starting_date = date
         self._investment_amount = amount
         self._interest = interest
-        self._end_date = end_date
+        BankProduct.__init__(self, user_id=user_id, product_id=product_id, type='investment')
 
     def interest_for_date(self, date):
         return self._investment_amount * (self._interest / self._diff_month(self._starting_date, date))

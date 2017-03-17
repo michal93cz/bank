@@ -3,7 +3,7 @@ import time
 
 
 class Credit(BankProduct):
-    def __init__(self, user_id, product_id, money, account, end_date):
+    def __init__(self, money, account, end_date, user_id, product_id):
         BankProduct.__init__(self, user_id=user_id, product_id=product_id, type='credit')
         self._money = money
         self._account = account

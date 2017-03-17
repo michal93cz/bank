@@ -1,5 +1,8 @@
 import unittest
 from bank import Bank
+from investment import Investment
+from bank_account import BankAccount
+from credit import Credit
 
 class TestBank(unittest.TestCase):
     def setUp(self):
@@ -26,7 +29,19 @@ class TestBank(unittest.TestCase):
 
     def test_make_account(self):
         account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)
+        self.assertEqual(type(self.newBank.getProducts()[0]), BankAccount)
         self.assertEqual(self.newBank.getProducts()[0], account)
+
+    def test_make_investment(self):
+        investment = self.newBank.makeInvestment(3, 45, 3, self.USER_ID, self.PRODUCT_ID)
+        self.assertEqual(type(self.newBank.getProducts()[0]), Investment)
+        self.assertEqual(self.newBank.getProducts()[0], investment)
+
+    def test_make_credit(self):
+        account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)
+        credit = self.newBank.makeCredit(3, account, 3, self.USER_ID, self.PRODUCT_ID_2)
+        self.assertEqual(type(self.newBank.getProducts()[1]), Credit)
+        self.assertEqual(self.newBank.getProducts()[1], credit)
 
     def test_get_user_products(self):
         self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)

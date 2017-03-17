@@ -1,4 +1,6 @@
 from bank_account import BankAccount
+from investment import Investment
+from credit import Credit
 from client import Client
 
 class Bank:
@@ -30,6 +32,16 @@ class Bank:
         account = BankAccount(userId, productId)
         self.products.append(account)
         return account
+
+    def makeInvestment(self, date, amount, interest, userId, productId):
+        investment = Investment(date, amount, interest, userId, productId)
+        self.products.append(investment)
+        return investment
+
+    def makeCredit(self, money, account, end_date, userId, productId):
+        credit = Credit(money, account, end_date, userId, productId)
+        self.products.append(credit)
+        return credit
 
     def getUserProducts(self, userId):
         userProducts = []
