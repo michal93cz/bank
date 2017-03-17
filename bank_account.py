@@ -11,6 +11,8 @@ class BankAccount(BankProduct):
     def close_product(self):
         if self.debit.get_current_debit() > 0:
             print("You can't close account until your debit is not equal 0")
+            return False
+        return True
 
     def withdraw(self, money):
         if money > self._account_balance + (self.debit.get_max_debit()-self.debit.get_current_debit()):
