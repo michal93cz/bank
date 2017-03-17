@@ -12,7 +12,15 @@ class Credit(BankProduct):
         account.deposit_money(money)
 
     def close_product(self, interests):
-        self._account.withdraw(self.money+(self.money*interests))
+        to_pay = self.money+(self.money*interests)
+        payed = self._account.withdraw(to_pay)
+        if (payed is not None) and (payed == to_pay):
+            print("Kredyt spłacony")
+            return True
+        else:
+            print("Brak wystarczających środków do spłaty kredytu")
+            return False
+
 
     def get_credit_value(self):
         return self._money
