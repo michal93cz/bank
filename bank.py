@@ -2,11 +2,12 @@ from bank_account import BankAccount
 from investment import Investment
 from credit import Credit
 from client import Client
+from history import History
 
 class Bank:
     def __init__(self):
         self.products = []
-        self.history = []
+        self.history = History()
         self.raports = []
         self.operations = []
         self.clients = []
