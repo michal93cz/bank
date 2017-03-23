@@ -1,6 +1,5 @@
 # określa warunki debetu
 # egzekwuje spłatę debetu
-# TODO: egzekwowanie wpłaty
 
 
 class Debit:
