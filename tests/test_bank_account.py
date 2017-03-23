@@ -4,7 +4,7 @@ from bank_account import BankAccount
 
 class BankAccountTestCase(unittest.TestCase):
     def setUp(self):
-        self.account = BankAccount(1, 2)
+        self.account = BankAccount(1, 2, 50)
 
     def test_close_product_without_founds(self):
         self.assertEqual(self.account.close_product(), True, 'Cannot close account without money')
@@ -27,7 +27,7 @@ class BankAccountTestCase(unittest.TestCase):
         money = 60
         result = self.account.withdraw(money)
         self.assertEqual(self.account.current_account_balance(), 0)
-        self.assertEqual(result, None)
+        self.assertEqual(result, 0)
 
     def test_withdraw_hundread_form_seventy_five(self):
         money = 100

@@ -3,7 +3,7 @@ from debit import Debit
 
 
 class BankAccount(BankProduct):
-    def __init__(self, user_id, product_id, debit=10):
+    def __init__(self, user_id, product_id, debit=50):
         self._account_balance = 0
         BankProduct.__init__(self, user_id=user_id, product_id=product_id, type='account')
         self.debit = Debit(debit)
