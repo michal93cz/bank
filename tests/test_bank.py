@@ -14,17 +14,14 @@ class TestBank(unittest.TestCase):
 
     # Wydaje mi się, że taki test nie ma sensu i jest trochę na siłę, bo tak naprawdę sprawdzamy
     # czy w Pythonie działa operacja przypisania wartości do zmiennej
+
+    # jest to tak naprawde test konstruktora, jesli ktoś w przyszłości zmieniłby jego działanie
+    # to powinien się wysypać i po to własnie jest
     def test_empty_get_clients(self):
         self.assertEqual(self.newBank.getClients(), [])
 
     def test_empty_get_products(self):
         self.assertEqual(self.newBank.getProducts(), [])
-
-        # pisząc klasę History przyjąłem założenie, że to ona zarządza historią i udostępnia bankowi
-        # jedynie interfejs pozwalający się dobrać do wpisów. Tzn. bank przechowuje jeden obiekt historii,
-        # a logi sa dopiero wewnątrz tego obiektu. Dlatego na razie zakomentuję ten fragment.
-        # def test_empty_get_history(self):
-        #   self.assertEqual(self.newBank.getHistory(), [])
 
     def test_empty_get_raports(self):
         self.assertEqual(self.newBank.getRaports(), [])
@@ -61,3 +58,21 @@ class TestBank(unittest.TestCase):
         product = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID_2)
         self.assertNotEqual(self.newBank.getUserProduct(self.USER_ID, self.PRODUCT_ID), product)
         self.assertEqual(self.newBank.getUserProduct(self.USER_ID, self.PRODUCT_ID_2), product)
+
+    def test_get_user_accounts(self):
+        account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)
+        credit = self.newBank.makeCredit(3, account, 3, self.USER_ID, self.PRODUCT_ID_2)
+        self.assertNotEqual(self.newBank.getUserAccounts(self.USER_ID)[0], credit)
+        self.assertEqual(self.newBank.getUserAccounts(self.USER_ID)[0], account)
+
+    def test_get_user_credits(self):
+        account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)
+        credit = self.newBank.makeCredit(3, account, 3, self.USER_ID, self.PRODUCT_ID_2)
+        self.assertNotEqual(self.newBank.getUserCredits(self.USER_ID)[0], account)
+        self.assertEqual(self.newBank.getUserCredits(self.USER_ID)[0], credit)
+
+    def test_get_user_investments(self):
+        account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)
+        investment = self.newBank.makeInvestment(3, 45, 3, self.USER_ID, self.PRODUCT_ID_2)
+        self.assertNotEqual(self.newBank.getUserInvestments(self.USER_ID)[0], account)
+        self.assertEqual(self.newBank.getUserInvestments(self.USER_ID)[0], investment)

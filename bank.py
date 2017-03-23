@@ -55,12 +55,28 @@ class Bank:
     def getUserAccounts(self, userId):
         userProducts = []
         for product in self.products:
-            if product.getOwner() == userId and product.getType() == 'account':
+            if product.getOwner() == userId and type(product) == BankAccount:
                 userProducts.append(product)
 
         return userProducts
 
-    def getUserProduct(self, userId, id):
+    def getUserInvestments(self, userId):
+        userProducts = []
         for product in self.products:
-            if product.getOwner() == userId and product.getId() == id:
+            if product.getOwner() == userId and type(product) == Investment:
+                userProducts.append(product)
+
+        return userProducts
+
+    def getUserCredits(self, userId):
+        userProducts = []
+        for product in self.products:
+            if product.getOwner() == userId and type(product) == Credit:
+                userProducts.append(product)
+
+        return userProducts
+
+    def getUserProduct(self, userId, productId):
+        for product in self.products:
+            if product.getOwner() == userId and product.getId() == productId:
                 return product

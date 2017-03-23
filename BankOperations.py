@@ -1,3 +1,10 @@
 class BankOperations:
-    def __init__(self):
-        print('Sorry, not implemented')
+    @staticmethod
+    def transfer(accountFrom, accountTo, amount):
+        if accountFrom.withdraw(amount):
+            accountTo.deposit_money(amount)
+
+    @staticmethod
+    def deposit(accountFrom, accountTo, amount):
+        if accountFrom.withdraw(amount):
+            accountTo.deposit_money(amount)

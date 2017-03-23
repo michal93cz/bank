@@ -3,7 +3,7 @@ from debit import Debit
 
 
 class BankAccount(BankProduct):
-    def __init__(self, user_id, product_id, debit=50):
+    def __init__(self, user_id, product_id, debit=10):
         self._account_balance = 0
         BankProduct.__init__(self, user_id=user_id, product_id=product_id, type='account')
         self.debit = Debit(debit)
@@ -17,10 +17,10 @@ class BankAccount(BankProduct):
     def withdraw(self, money):
         if money > self._account_balance + (self.debit.get_max_debit()-self.debit.get_current_debit()):
             print('Not enough money for withdraw.')
-            return
+            return 0
         if money < 1:
             print('Money which you want to withdraw must be greater than zero!')
-            return
+            return 0
         self._account_balance -= money
         if self._account_balance < 0:
             self.debit.extend_debit(self._account_balance*(-1))

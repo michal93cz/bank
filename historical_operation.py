@@ -2,13 +2,13 @@ import time
 
 
 class HistoricalOperation:
-    def __init__(self, product_type, operatiorn_type, account_id, money, second_account_id=-1):
+    def __init__(self, product_type, operation_type, account_id, money, second_account_id=-1):
         self._product_type = product_type
-        self._operation_type = operatiorn_type
+        self._operation_type = operation_type
         self._account_id = account_id
         self._money = money
         self._date = time.asctime(time.localtime(time.time()))
-        if operatiorn_type == "transfer":
+        if operation_type == "transfer":
             self._second_account_id = second_account_id
             if second_account_id == -1:
                 print("Invalid second account")
