@@ -4,6 +4,7 @@ from investment import Investment
 from bank_account import BankAccount
 from credit import Credit
 
+
 class TestBank(unittest.TestCase):
     def setUp(self):
         self.newBank = Bank()
@@ -11,14 +12,19 @@ class TestBank(unittest.TestCase):
         self.PRODUCT_ID = 5
         self.PRODUCT_ID_2 = 7
 
+    # Wydaje mi się, że taki test nie ma sensu i jest trochę na siłę, bo tak naprawdę sprawdzamy
+    # czy w Pythonie działa operacja przypisania wartości do zmiennej
     def test_empty_get_clients(self):
         self.assertEqual(self.newBank.getClients(), [])
 
     def test_empty_get_products(self):
         self.assertEqual(self.newBank.getProducts(), [])
 
-    def test_empty_get_history(self):
-        self.assertEqual(self.newBank.getHistory(), [])
+        # pisząc klasę History przyjąłem założenie, że to ona zarządza historią i udostępnia bankowi
+        # jedynie interfejs pozwalający się dobrać do wpisów. Tzn. bank przechowuje jeden obiekt historii,
+        # a logi sa dopiero wewnątrz tego obiektu. Dlatego na razie zakomentuję ten fragment.
+        # def test_empty_get_history(self):
+        #   self.assertEqual(self.newBank.getHistory(), [])
 
     def test_empty_get_raports(self):
         self.assertEqual(self.newBank.getRaports(), [])
