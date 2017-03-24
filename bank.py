@@ -80,3 +80,9 @@ class Bank:
         for product in self.products:
             if product.getOwner() == userId and product.getId() == productId:
                 return product
+
+    def transfer(self, accountFrom, accountTo, amount):
+        if accountFrom.withdraw(amount):
+            accountTo.deposit_money(amount)
+            return True
+        return False
