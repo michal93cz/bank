@@ -23,6 +23,8 @@ class Debit:
         print("Current debit: ", self._current_debit_value)
 
     def extend_debit(self, value):
+        if value <= 0:
+            raise ValueError('Cannot extend debit with value which is smaller or equal zero')
         if self._current_debit_value + value <= self._max_debit_value:
             self._current_debit_value += value
             self.print_current_debit()
@@ -32,6 +34,8 @@ class Debit:
             return 1
 
     def cut_debit(self, value):
+        if value <= 0:
+            raise ValueError('Cannot cut debit with value which is smaller or equal zero')
         self._current_debit_value -= value
         if self._current_debit_value < 0:
             rest = -self._current_debit_value

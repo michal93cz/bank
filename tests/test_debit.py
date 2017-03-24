@@ -48,3 +48,21 @@ class DebitTestCase(unittest.TestCase):
         self._debit.extend_debit(money)
         self.assertEqual(self._debit.cut_debit(money*2), money)
         self.assertEqual(self._debit.get_current_debit(), 0)
+
+    def test_cut_debit_with_minus_value(self):
+        money = -25
+        try:
+            self._debit.cut_debit(money)
+        except ValueError:
+            pass
+        else:
+            self.fail('ValueError not raised')
+
+    def test_extend_debit_with_minus_value(self):
+        money = -25
+        try:
+            self._debit.extend_debit(money)
+        except ValueError:
+            pass
+        else:
+            self.fail('ValueError not raised')
