@@ -1,5 +1,4 @@
 from bank import Bank
-from BankOperations import BankOperations
 
 newBank = Bank()
 
@@ -16,7 +15,7 @@ myClient2 = newBank.makeClient(MY_ID_2)
 myAccount2 = newBank.makeAccount(myClient.getId(), ACCTUAL_ACCOUNT_ID_2)
 
 myAccount2.deposit_money(10)
-BankOperations.transfer(myAccount2, myAccount, 30)
+newBank.transfer(myAccount2, myAccount, 30)
 
 newBank.history.add_log('account', 'deposit', myAccount.deposit_money(100), ACCTUAL_ACCOUNT_ID)
 

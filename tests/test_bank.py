@@ -9,11 +9,9 @@ class TestBank(unittest.TestCase):
     def setUp(self):
         self.newBank = Bank()
         self.USER_ID = 3
+        self.SECOND_USER_ID = 2
         self.PRODUCT_ID = 5
         self.PRODUCT_ID_2 = 7
-
-    # Wydaje mi się, że taki test nie ma sensu i jest trochę na siłę, bo tak naprawdę sprawdzamy
-    # czy w Pythonie działa operacja przypisania wartości do zmiennej
 
     # jest to tak naprawde test konstruktora, jesli ktoś w przyszłości zmieniłby jego działanie
     # to powinien się wysypać i po to własnie jest
@@ -76,3 +74,12 @@ class TestBank(unittest.TestCase):
         investment = self.newBank.makeInvestment(3, 45, 3, self.USER_ID, self.PRODUCT_ID_2)
         self.assertNotEqual(self.newBank.getUserInvestments(self.USER_ID)[0], account)
         self.assertEqual(self.newBank.getUserInvestments(self.USER_ID)[0], investment)
+
+    def test_transfer(self):
+        first_account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)
+        second_account = self.newBank.makeAccount(self.SECOND_USER_ID, self.PRODUCT_ID_2)
+        money = 1024
+        first_account.deposit_money(money)
+        self.assertEqual(self.newBank.transfer(first_account, second_account, money), True)
+        self.assertEqual(first_account.current_account_balance(), 0)
+        self.assertEqual(second_account.current_account_balance(), 1024)
