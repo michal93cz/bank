@@ -15,14 +15,14 @@ class Credit(BankProduct):
         self._installment_to_pay = number_of_installment
         self._interest = CreditInterest(value=money, percent=5)
         account.deposit(money)
-        self._history.append(History("Credit started with value: "+str(money)))
+        self._history.append(History("Credit started with value: "+str(money), self.getId()))
 
     def pay_one_installment(self):
         if self._installment_to_pay < 0:
             raise ValueError("Wszystkie raty zostały spłacone")
         value_str = str(self._interest.get_interests_value(self._money/self._number_of_installment) + self._money/self._number_of_installment)
         print("One installment pay, value: " + value_str)
-        self._history.append(History("One installment pay, value: " + value_str))
+        self._history.append(History("One installment pay, value: " + value_str, self.getId()))
         self._installment_to_pay -= 1
         self._account.pay_interest(self._interest.get_interests_value(self._money/self._number_of_installment) + self._money/self._number_of_installment)
 
@@ -32,7 +32,7 @@ class Credit(BankProduct):
         if (payed is not None) and (payed == to_pay):
             self._installment_to_pay = 0
             print("Credit payed.")
-            self._history.append(History("Credit payed and closed."))
+            self._history.append(History("Credit payed and closed.", self.getId()))
             return True
         else:
             print("Not enough money to pay credit.")

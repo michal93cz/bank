@@ -85,8 +85,8 @@ class Bank:
     def transfer(self, accountFrom, accountTo, amount):
         if accountFrom.withdraw(amount, True):
             accountTo.deposit(amount, True)
-            h_from = History("Outgoing transfer to " + str(accountTo.getId()) + ", value: "+str(amount))
-            h_to = History("Incoming transfer from " + str(accountFrom.getId()) + ", value: " + str(amount))
+            h_from = History("Outgoing transfer to " + str(accountTo.getId()) + ", value: "+str(amount), accountFrom.getId())
+            h_to = History("Incoming transfer from " + str(accountFrom.getId()) + ", value: " + str(amount), accountTo.getId())
             accountFrom.getHistory().append(h_from)
             accountTo.getHistory().append(h_to)
             return True
