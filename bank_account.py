@@ -14,6 +14,9 @@ class BankAccount(BankProduct):
             return False
         return True
 
+    def get_account_balance(self):
+        return self._account_balance
+
     def withdraw(self, money):
         if money > self._account_balance + (self.debit.get_max_debit()-self.debit.get_current_debit()):
             print('Not enough money for withdraw.')
@@ -37,3 +40,13 @@ class BankAccount(BankProduct):
     def current_account_balance(self):
         print('Current account balance is ' + str(self._account_balance-self.debit.get_current_debit()))
         return self._account_balance-self.debit.get_current_debit()
+
+    def pay_interest(self, value):
+        if value > self._account_balance + (self.debit.get_max_debit()-self.debit.get_current_debit()):
+            print('Not enough money to pay interest.')
+            return False
+        if value <= 0:
+            print('Interest value must be greater than zero')
+            return False
+        self._account_balance -= value
+        return True
