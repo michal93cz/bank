@@ -32,6 +32,8 @@ class Bank:
         return account
 
     def makeInvestment(self, date, amount, account, interest, userId, productId):
+        if amount <= 0:
+            raise ValueError("Investment value must be greater than zero!")
         investment = Investment(date, amount, account, interest, userId, productId)
         self.products.append(investment)
         return investment

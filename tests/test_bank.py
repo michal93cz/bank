@@ -43,7 +43,7 @@ class TestBank(unittest.TestCase):
     def test_make_credit(self):
         account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)
         account.deposit(100)
-        credit = self.newBank.makeCredit(200, account, 3, self.USER_ID, self.PRODUCT_ID_2)
+        credit = self.newBank.makeCredit(200, account, 3, self.USER_ID, self.PRODUCT_ID_2, 12)
         self.assertEqual(account.current_account_balance(), 100 + 200)
         self.assertEqual(type(self.newBank.getProducts()[1]), Credit)
         self.assertEqual(self.newBank.getProducts()[1], credit)
@@ -63,13 +63,13 @@ class TestBank(unittest.TestCase):
 
     def test_get_user_accounts(self):
         account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)
-        credit = self.newBank.makeCredit(3, account, 3, self.USER_ID, self.PRODUCT_ID_2)
+        credit = self.newBank.makeCredit(3, account, 3, self.USER_ID, self.PRODUCT_ID_2, 12)
         self.assertNotEqual(self.newBank.getUserAccounts(self.USER_ID)[0], credit)
         self.assertEqual(self.newBank.getUserAccounts(self.USER_ID)[0], account)
 
     def test_get_user_credits(self):
         account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)
-        credit = self.newBank.makeCredit(3, account, 3, self.USER_ID, self.PRODUCT_ID_2)
+        credit = self.newBank.makeCredit(3, account, 3, self.USER_ID, self.PRODUCT_ID_2, 12)
         self.assertNotEqual(self.newBank.getUserCredits(self.USER_ID)[0], account)
         self.assertEqual(self.newBank.getUserCredits(self.USER_ID)[0], credit)
 
