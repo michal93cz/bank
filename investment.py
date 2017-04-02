@@ -18,7 +18,8 @@ class Investment(BankProduct):
     def interest_for_date(self, date):
         return self._investment_amount * (self._interest / self._diff_month(self._starting_date, date))
 
-    def close_product(self, date):
+    def close_product(self):
+        date = time.asctime(time.localtime(time.time()))
         if self._ending_date == date:
             self._account.deposit(self._investment_amount + self._interest * self._investment_amount)
         else:
