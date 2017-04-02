@@ -36,8 +36,10 @@ class Bank:
         self.products.append(investment)
         return investment
 
-    def makeCredit(self, money, account, end_date, userId, productId):
-        credit = Credit(money, account, end_date, userId, productId)
+    def makeCredit(self, money, account, end_date, userId, productId, number_of_installment):
+        if money <= 0:
+            raise ValueError("Credit value must be greater than zero!")
+        credit = Credit(money, account, end_date, userId, productId, number_of_installment)
         self.products.append(credit)
         return credit
 
