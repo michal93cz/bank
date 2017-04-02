@@ -21,7 +21,6 @@ class Credit(BankProduct):
             print("Brak wystarczających środków do spłaty kredytu")
             return False
 
-
     def get_credit_value(self):
         return self._money
 

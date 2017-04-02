@@ -25,8 +25,8 @@ class TestBank(unittest.TestCase):
         self.assertEqual(self.newBank.getRaports(), [])
 
     def test_make_client(self):
-        client = self.newBank.makeClient(self.USER_ID)
-        self.assertEqual(self.newBank.getClients()[0], client)
+        self.newBank.makeClient(self.USER_ID)
+        self.assertEqual(self.newBank.getClients()[0], self.USER_ID)
 
     def test_make_account(self):
         account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)

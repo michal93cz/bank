@@ -1,7 +1,6 @@
 from bank_account import BankAccount
 from investment import Investment
 from credit import Credit
-from client import Client
 from history import History
 
 class Bank:
@@ -13,9 +12,7 @@ class Bank:
         self.clients = []
 
     def makeClient(self, id):
-        client = Client(id)
-        self.clients.append(client)
-        return client
+        self.clients.append(id)
 
     def getClients(self):
         return self.clients
@@ -86,3 +83,12 @@ class Bank:
             accountTo.deposit_money(amount)
             return True
         return False
+
+    def getProductById(self, productId):
+        for product in self.products:
+            if product.getId() == productId:
+                return product
+
+    def closeProduct(self, id):
+        self.getProductById(id).closeProduct()
+        self.products.remove(self.getProductById(id))
