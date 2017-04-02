@@ -1,6 +1,7 @@
 #Lokata
 from bank_product import BankProduct
 import time
+from history import History
 
 
 class Investment(BankProduct):
@@ -12,6 +13,7 @@ class Investment(BankProduct):
         self._investment_amount = amount
         self._interest = interest
         BankProduct.__init__(self, user_id=user_id, product_id=product_id, type='investment')
+        self._history.append(History("Investment started with value: "+str(amount)))
 
     def interest_for_date(self, date):
         return self._investment_amount * (self._interest / self._diff_month(self._starting_date, date))
@@ -21,6 +23,7 @@ class Investment(BankProduct):
             self._account.deposit_money(self._investment_amount + self._interest * self._investment_amount)
         else:
             self._account.deposit_money(self._investment_amount)
+        self._history.append(History("Investment closed"))
 
     def _diff_month(d1, d2):
         return (d1.year - d2.year) * 12 + d1.month - d2.month
