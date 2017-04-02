@@ -16,6 +16,8 @@ class Credit(BankProduct):
         account.deposit(money)
 
     def pay_one_installment(self):
+        if self._installment_to_pay < 0:
+            raise ValueError("Wszystkie raty zostały spłacone")
         print("One installment pay, value: " + str(self._interest.get_interests_value(self._money/self._number_of_installment) + self._money/self._number_of_installment))
         self._installment_to_pay -= 1
         self._account.pay_interest(self._interest.get_interests_value(self._money/self._number_of_installment) + self._money/self._number_of_installment)

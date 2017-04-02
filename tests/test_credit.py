@@ -34,6 +34,19 @@ class TestCredit(unittest.TestCase):
 
         self.assertEqual(300 - ((200 * 0.05) + 200), self.account.get_account_balance())
 
+    def test_attempt_to_pay_too_many_installment(self):
+        self.account.deposit(100)
+        number_of_installment = 12
+        credit = self.bank.makeCredit(200, self.account, self.ACCOUNT_ID, self.USER_ID, self.CREDIT_ID, number_of_installment)
+
+        try:
+            for i in range(0, credit._number_of_installment + 100):  # 100 is extra number of installment
+                credit.pay_one_installment()
+        except ValueError:
+            pass
+        else:
+            self.fail('ValueError exception not except')
+
     def test_make_credit_with_incorrect_values(self):
         try:
             self.bank.makeCredit(-200, self.account, self.ACCOUNT_ID, self.USER_ID, self.CREDIT_ID, self._number_of_installment)
