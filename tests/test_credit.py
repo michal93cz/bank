@@ -40,9 +40,10 @@ class TestCredit(unittest.TestCase):
         credit = self.bank.makeCredit(200, self.account, self.ACCOUNT_ID, self.USER_ID, self.CREDIT_ID, number_of_installment)
 
         try:
-            for i in range(0, credit._number_of_installment + 100):  # 100 is extra number of installment
+            for i in range(0, credit._number_of_installment + 10):  # 10 is extra number of installment
                 credit.pay_one_installment()
         except ValueError:
+            print("test_attempt_to_pay_too_many_installment passed")
             pass
         else:
             self.fail('ValueError exception not except')
