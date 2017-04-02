@@ -31,8 +31,8 @@ class Bank:
         self.products.append(account)
         return account
 
-    def makeInvestment(self, date, amount, interest, userId, productId):
-        investment = Investment(date, amount, interest, userId, productId)
+    def makeInvestment(self, date, amount, account, interest, userId, productId):
+        investment = Investment(date, amount, account, interest, userId, productId)
         self.products.append(investment)
         return investment
 
@@ -80,7 +80,7 @@ class Bank:
 
     def transfer(self, accountFrom, accountTo, amount):
         if accountFrom.withdraw(amount):
-            accountTo.deposit_money(amount)
+            accountTo.deposit(amount)
             return True
         return False
 

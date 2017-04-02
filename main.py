@@ -1,4 +1,5 @@
 from bank import Bank
+from credit import Credit
 
 newBank = Bank()
 
@@ -8,16 +9,17 @@ ACCTUAL_ACCOUNT_ID = 5
 MY_ID_2 = 5
 ACCTUAL_ACCOUNT_ID_2 = 8
 
+
 myClient = newBank.makeClient(MY_ID)
-myAccount = newBank.makeAccount(myClient.getId(), ACCTUAL_ACCOUNT_ID)
+myAccount = newBank.makeAccount(MY_ID, ACCTUAL_ACCOUNT_ID)
 
 myClient2 = newBank.makeClient(MY_ID_2)
-myAccount2 = newBank.makeAccount(myClient.getId(), ACCTUAL_ACCOUNT_ID_2)
+myAccount2 = newBank.makeAccount(MY_ID_2, ACCTUAL_ACCOUNT_ID_2)
 
-myAccount2.deposit_money(10)
+myAccount2.deposit(10)
 newBank.transfer(myAccount2, myAccount, 30)
 
-newBank.history.add_log('account', 'deposit', myAccount.deposit_money(100), ACCTUAL_ACCOUNT_ID)
+newBank.history.add_log('account', 'deposit', myAccount.deposit(100), ACCTUAL_ACCOUNT_ID)
 
 val = myAccount.withdraw(35)
 if val is not None:
@@ -42,7 +44,7 @@ if val is not None:
 print(newBank.getUserProduct(MY_ID, ACCTUAL_ACCOUNT_ID).current_account_balance())
 
 # cut debit
-newBank.history.add_log('account', 'deposit', myAccount.deposit_money(100), ACCTUAL_ACCOUNT_ID)
+newBank.history.add_log('account', 'deposit', myAccount.deposit(100), ACCTUAL_ACCOUNT_ID)
 print(newBank.getUserProduct(MY_ID, ACCTUAL_ACCOUNT_ID).current_account_balance())
 
 # print history

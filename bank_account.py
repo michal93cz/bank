@@ -28,7 +28,7 @@ class BankAccount(BankProduct):
         print('Withdraw ' + str(money))
         return money
 
-    def deposit_money(self, money):
+    def deposit(self, money):
         print('Deposit ' + str(money))
         rest = self.debit.cut_debit(money)
         self._account_balance += rest

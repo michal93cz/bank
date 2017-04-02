@@ -4,12 +4,12 @@ import time
 
 
 class Investment(BankProduct):
-
     def __init__(self, endDate, amount, account, interest, user_id, product_id):
         self._starting_date = time.asctime(time.localtime(time.time()))
         self._ending_date = endDate
-        self._investment_amount = amount
         self._account = account
+        self._account.withdraw(amount)
+        self._investment_amount = amount
         self._interest = interest
         BankProduct.__init__(self, user_id=user_id, product_id=product_id, type='investment')
 

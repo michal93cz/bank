@@ -9,7 +9,7 @@ class Credit(BankProduct):
         self._account = account
         self._begin_date = time.asctime(time.localtime(time.time()))
         self._end_date = end_date
-        account.deposit_money(money)
+        account.deposit(money)
 
     def close_product(self, interests):
         to_pay = self.money+(self.money*interests)
