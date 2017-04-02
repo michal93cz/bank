@@ -27,6 +27,7 @@ class Credit(BankProduct):
         payed = self._account.withdraw(to_pay)
         if (payed is not None) and (payed == to_pay):
             print("Kredyt spłacony")
+            self._installment_to_pay = 0
             return True
         else:
             print("Brak wystarczających środków do spłaty kredytu")

@@ -17,10 +17,10 @@ class Investment(BankProduct):
         return self._investment_amount * (self._interest / self._diff_month(self._starting_date, date))
 
     def close_product(self, date):
-        if (self._ending_date == date):
-            self._account.deposit_money(self._investment_amount + self._interest * self._investment_amount)
+        if self._ending_date == date:
+            self._account.deposit(self._investment_amount + self._interest * self._investment_amount)
         else:
-            self._account.deposit_money(self._investment_amount)
+            self._account.deposit(self._investment_amount)
 
     def _diff_month(d1, d2):
         return (d1.year - d2.year) * 12 + d1.month - d2.month
