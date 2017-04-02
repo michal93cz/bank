@@ -88,6 +88,7 @@ class Bank:
         for product in self.products:
             if product.getId() == productId:
                 return product
+        return False
 
     def closeProduct(self, id):
         self.getProductById(id).closeProduct()

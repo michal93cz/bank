@@ -8,12 +8,6 @@ class BankProduct:
     def closeProduct(self):
         pass
 
-    def withdraw(self):
-        pass
-
-    def deposit(self):
-        pass
-
     def getOwner(self):
         return self._user_id
 

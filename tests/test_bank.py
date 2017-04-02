@@ -87,3 +87,18 @@ class TestBank(unittest.TestCase):
         self.assertEqual(self.newBank.transfer(first_account, second_account, money), True)
         self.assertEqual(first_account.current_account_balance(), 0)
         self.assertEqual(second_account.current_account_balance(), 1024)
+
+    def test_get_product_by_id(self):
+        first_account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)
+        second_account = self.newBank.makeAccount(self.SECOND_USER_ID, self.PRODUCT_ID_2)
+        self.assertEqual(self.newBank.getProductById(self.PRODUCT_ID_2), second_account)
+        self.assertEqual(self.newBank.getProductById(self.PRODUCT_ID), first_account)
+        self.assertEqual(self.newBank.getProductById(45), False)
+
+    def test_close_product(self):
+        first_account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID)
+        second_account = self.newBank.makeAccount(self.USER_ID, self.PRODUCT_ID_2)
+        self.assertEqual(self.newBank.getProductById(self.PRODUCT_ID_2), second_account)
+        self.newBank.closeProduct(self.PRODUCT_ID_2)
+        self.assertNotEqual(self.newBank.getProductById(self.PRODUCT_ID_2), second_account)
+        self.assertEqual(self.newBank.getProductById(self.PRODUCT_ID), first_account)

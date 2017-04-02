@@ -7,7 +7,7 @@ class Report:
         founds_sum = 0
         for product in products:
             if type(product) is BankAccount:
-                founds_sum += product.current_account_balance
+                founds_sum += product.current_account_balance()
         return founds_sum
 
     def sum_of_transactions(self, history, begin_date, end_date):
@@ -18,6 +18,6 @@ class Report:
         debits_sum = 0
         for product in products:
             if type(product) is BankAccount:
-                if product.current_account_balance < 0:
-                    debits_sum += -product.current_account_balance
+                if product.current_account_balance() < 0:
+                    debits_sum += -product.current_account_balance()
         return debits_sum

@@ -1,5 +1,4 @@
 from bank import Bank
-from credit import Credit
 
 newBank = Bank()
 
