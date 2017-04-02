@@ -5,8 +5,7 @@ class Interest:
     __metaclass__ = ABCMeta
 
     def __init__(self, value, percent):
-        self.value = value
-        self.percent = percent
+        Interest.__init__(self, value, percent)
 
 
     @abstractmethod
