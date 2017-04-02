@@ -26,7 +26,7 @@ class Credit(BankProduct):
         self._installment_to_pay -= 1
         self._account.pay_interest(self._interest.get_interests_value(self._money/self._number_of_installment) + self._money/self._number_of_installment)
 
-    def close_product(self, interests):
+    def close_product(self):
         to_pay = self._money+(self._interest.get_interests_value(self._money))
         payed = self._account.withdraw(to_pay)
         if (payed is not None) and (payed == to_pay):
