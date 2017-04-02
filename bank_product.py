@@ -4,6 +4,7 @@ class BankProduct:
         self._user_id = user_id
         self._product_id = product_id
         self._type = type
+        self._history = []
 
     def closeProduct(self):
         pass
@@ -16,3 +17,7 @@ class BankProduct:
 
     def getType(self):
         return self._type
+
+    def getHistory(self):
+        return self._history
+

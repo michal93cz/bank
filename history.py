@@ -1,27 +1,16 @@
-from historical_operation import HistoricalOperation
+import time
 
 
 class History:
-    def __init__(self):
-        self._logs = []
+    def __init__(self, description):
+        self._date = time.asctime(time.localtime(time.time()))
+        self._description = description
 
-    def add_log(self, product_type, operation_type, money, account_id, second_account_id=-1):
-        historical_info = HistoricalOperation(product_type, operation_type, account_id, money, second_account_id)
-        self._logs.append(historical_info)
+    def get_date(self):
+        return self._date
 
-    def get_all_history(self):
-        return self._logs
+    def get_description(self):
+        return self._description
 
-    def get_account_history(self, account_id):
-        account_history = []
-        for log in self._logs:
-            if log.get_account_id() == account_id:
-                account_history.append(log)
-        return account_history
-
-    def get_product_history(self, product_type):
-        product_history = []
-        for log in self._logs:
-            if log.get_product_type() == product_type:
-                product_history.append(log)
-        return product_history
+    def print(self):
+        print(str(self._date)+" "+self._description)

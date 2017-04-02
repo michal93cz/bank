@@ -6,10 +6,10 @@ from history import History
 class Bank:
     def __init__(self):
         self.products = []
-        self.history = History()
         self.raports = []
         self.operations = []
         self.clients = []
+        self._historical_products = []
 
     def makeClient(self, id):
         self.clients.append(id)
@@ -83,8 +83,12 @@ class Bank:
                 return product
 
     def transfer(self, accountFrom, accountTo, amount):
-        if accountFrom.withdraw(amount):
-            accountTo.deposit(amount)
+        if accountFrom.withdraw(amount, True):
+            accountTo.deposit(amount, True)
+            h_from = History("Outgoing transfer to " + str(accountTo.getId()) + ", value: "+str(amount))
+            h_to = History("Incoming transfer from " + str(accountFrom.getId()) + ", value: " + str(amount))
+            accountFrom.getHistory().append(h_from)
+            accountTo.getHistory().append(h_to)
             return True
         return False
 
@@ -95,5 +99,22 @@ class Bank:
         return False
 
     def closeProduct(self, id):
-        self.getProductById(id).closeProduct()
-        self.products.remove(self.getProductById(id))
+        product = self.getProductById(id)
+        product.closeProduct()
+        self.products.remove(product)
+        self._historical_products.append(product)
+
+    def getBankHistory(self):
+        history = []
+        for product in self.products:
+            product_history = product.getHistory()
+            for historical_operation in product_history:
+                history.append(historical_operation)
+        for product in self._historical_products:
+            product_history = product.getHistory()
+            for historical_operation in product_history:
+                history.append(historical_operation)
+
+        # source: https://stackoverflow.com/questions/5055812/sort-python-list-of-objects-by-date
+        history.sort(key=lambda r: r.get_date())
+        return history

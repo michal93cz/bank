@@ -1,5 +1,6 @@
 from bank_product import BankProduct
 from debit import Debit
+from history import History
 
 
 class BankAccount(BankProduct):
@@ -7,17 +8,19 @@ class BankAccount(BankProduct):
         self._account_balance = 0
         BankProduct.__init__(self, user_id=user_id, product_id=product_id, type='account')
         self.debit = Debit(debit)
+        self._history.append(History("Account opened"))
 
     def close_product(self):
         if self.debit.get_current_debit() > 0:
             print("You can't close account until your debit is not equal 0")
             return False
+        self._history.append(History("Account closed"))
         return True
 
     def get_account_balance(self):
         return self._account_balance
 
-    def withdraw(self, money):
+    def withdraw(self, money, transfer=False):
         if money > self._account_balance + (self.debit.get_max_debit()-self.debit.get_current_debit()):
             print('Not enough money for withdraw.')
             return 0
@@ -28,11 +31,14 @@ class BankAccount(BankProduct):
         if self._account_balance < 0:
             self.debit.extend_debit(self._account_balance*(-1))
             self._account_balance = 0
-        print('Withdraw ' + str(money))
+        if not transfer:
+            self._history.append(History('Withdraw ' + str(money)))
         return money
 
-    def deposit(self, money):
+    def deposit(self, money, transfer=False):
         print('Deposit ' + str(money))
+        if not transfer:
+            self._history.append(History('Deposit ' + str(money)))
         rest = self.debit.cut_debit(money)
         self._account_balance += rest
         return money
