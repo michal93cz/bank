@@ -2,6 +2,7 @@ from Interests.interest import Interest
 
 
 class AccountInterestB(Interest):
+    @staticmethod
     def get_interests_value(self, money):
         if money < 10000:
             return money * 0.03
