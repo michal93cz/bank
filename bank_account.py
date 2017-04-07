@@ -17,12 +17,14 @@ class BankAccount(BankProduct):
         self._history.append(History("Account closed", self.getId()))
         return True
 
-
     def getBalance(self):
         return self._account_balance
 
     def get_account_balance(self):
         return self._account_balance
+
+    def _setAccountBalance(self, value):
+        self._account_balance = value
 
     def withdraw(self, money, transfer=False):
         if money > self._account_balance + (self.debit.get_max_debit()-self.debit.get_current_debit()):
