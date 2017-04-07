@@ -1,3 +1,6 @@
+from Interests.account_interest_a import AccountInterestA
+from Interests.interest import Interest
+
 class BankProduct:
 
     def __init__(self, user_id, product_id, type):
@@ -5,6 +8,7 @@ class BankProduct:
         self._product_id = product_id
         self._type = type
         self._history = []
+        self._interest = AccountInterestA(self)
 
     def closeProduct(self):
         pass
@@ -24,3 +28,5 @@ class BankProduct:
     def getBalance(self):
         pass
 
+    def setInterest(self, interest: Interest):
+        self._interest = interest
