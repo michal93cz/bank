@@ -23,7 +23,7 @@ class BankAccount(BankProduct):
     def get_account_balance(self):
         return self._account_balance
 
-    def _setAccountBalance(self, value):
+    def _set_account_balance(self, value):
         self._account_balance = value
 
     def withdraw(self, money, transfer=False):
@@ -62,3 +62,6 @@ class BankAccount(BankProduct):
             return False
         self._account_balance -= value
         return True
+
+    def addToHistory(self,h:History):
+        self.bank_account._history.append(h)
