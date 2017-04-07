@@ -8,4 +8,4 @@ class Interest:
         self.product = b
 
     @abstractmethod
-    def get_interests_value(self, money): raise NotImplemented
+    def get_interests_value(self): raise NotImplemented
