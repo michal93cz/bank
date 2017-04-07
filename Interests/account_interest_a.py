@@ -2,7 +2,6 @@ from Interests.interest import Interest
 
 
 class AccountInterestA(Interest):
-    @staticmethod
     def get_interests_value(self, money):
         if money < 1000:
             percent = 0.02
