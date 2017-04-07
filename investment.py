@@ -34,3 +34,6 @@ class Investment(BankProduct):
 
     def get_end_date(self):
         return self._ending_date
+
+    def getBalance(self):
+        return self._investment_amount

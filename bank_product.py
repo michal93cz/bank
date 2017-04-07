@@ -21,3 +21,6 @@ class BankProduct:
     def getHistory(self):
         return self._history
 
+    def getBalance(self):
+        pass
+

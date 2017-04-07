@@ -49,3 +49,6 @@ class Credit(BankProduct):
 
     def get_end_date(self):
         return self._end_date
+
+    def getBalance(self):
+        return self._money

@@ -17,6 +17,10 @@ class BankAccount(BankProduct):
         self._history.append(History("Account closed", self.getId()))
         return True
 
+
+    def getBalance(self):
+        return self._account_balance
+
     def get_account_balance(self):
         return self._account_balance
 
