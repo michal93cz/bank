@@ -1,0 +1,25 @@
+dwa banki
+
+
+                 [KIR]
+               //|    \\|
+             /          \
+         /                \
+[Bank1]                     [Bank2]
+  |                            |
+Klient1                     Klient2
+
+
+
+Bank1 nie wie nic o Banku2
+
+Przelew z Klienta 1 do Klienta 2 -> Bank2 dopiero wie czy klient2 istnieje, wczesniej nie jest sprawdzane, jeśli nie istnieje to pieniadze musza zwrocic
+
+zrobic operacje przelew miedzy bankowy i operacje odwrotną powrót przelewu
+
+do banku dodać identyfikator
+
+
+
+
+potem wzorzec dekorator
