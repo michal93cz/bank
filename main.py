@@ -1,7 +1,8 @@
 from bank import Bank
 import time
 
-newBank = Bank()
+bank_id=1
+newBank = Bank(bank_id)
 t = 1
 
 MY_ID = 3

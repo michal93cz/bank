@@ -87,7 +87,7 @@ class Bank:
 
         if accountFrom.get_bank_id() != accountTo.get_bank_id():
             print("Przelew miedzy bankowy")
-            
+
         if accountFrom.withdraw(amount, True):
             accountTo.deposit(amount, True)
             h_from = History("Outgoing transfer to " + str(accountTo.getId()) + ", value: "+str(amount), accountFrom.getId())

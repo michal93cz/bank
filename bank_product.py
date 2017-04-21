@@ -1,6 +1,7 @@
 from Interests.account_interest_a import AccountInterestA
 from Interests.interest import Interest
 
+
 class BankProduct:
 
     def __init__(self, bank_id: int, user_id: int, product_id: int, type):

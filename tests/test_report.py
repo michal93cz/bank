@@ -6,7 +6,8 @@ from bank import Bank
 class DebitTestCase(unittest.TestCase):
     def setUp(self):
         self.report = Report()
-        self.newBank = Bank()
+        self.bank_id = 1
+        self.bank = Bank(bank_id=self.bank_id)
         self.USER_ID = 3
         self.SECOND_USER_ID = 2
         self.PRODUCT_ID = 5

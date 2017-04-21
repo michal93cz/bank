@@ -1,9 +1,9 @@
 from Interests.interest import Interest
-from bank_product import BankProduct
+
 
 
 class AccountInterestA(Interest):
-    def __init__(self, b: BankProduct):
+    def __init__(self, b):
         Interest.__init__(self, b)
 
     def get_interests_value(self):

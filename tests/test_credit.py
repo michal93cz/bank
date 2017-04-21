@@ -6,7 +6,8 @@ from Interests import credit_interest
 
 class TestCredit(unittest.TestCase):
     def setUp(self):
-        self.bank = Bank()
+        self.bank_id = 1
+        self.bank = Bank(bank_id=self.bank_id)
         self.USER_ID = random.randint(1, 10)
         self.ACCOUNT_ID = random.randint(1, 10)
         self.CREDIT_ID = random.randint(11, 20)
