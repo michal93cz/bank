@@ -65,3 +65,6 @@ class BankAccount(BankProduct):
 
     def addToHistory(self,h:History):
         self.bank_account._history.append(h)
+
+    def get_bank_id(self):
+        return self._bank_id
