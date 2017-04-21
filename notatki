@@ -1,4 +1,4 @@
-dwa banki
+dwa banki WZORZEC MEDIATOR
 
 
                  [KIR]
@@ -23,3 +23,13 @@ do banku dodać identyfikator
 
 
 potem wzorzec dekorator
+
+Na poczatek kazdy nowy uzytkownik nie moze tworzyc debetu, tworzenie debetu za pomoca dekoratora
+
+
+konto debetowe i konto zwykle musi miec wspolny interfejs i dodatkowa referencja konta zwyklego w koncie debetowym
+
+wszystko co zwiazane z debetem wyrzucic do osobnej czesci, napisac inaczej metody wplata/wyplata
+
+w koncie debetowym przeciazyc metode wyplata, uzywamy srodkow ktorych mamy ze zwyklego konta a potem dopiero pobierane z debetu
+przeciazyc metode wplata, w pierwszej kolejnosci splacamy debet

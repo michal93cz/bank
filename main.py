@@ -1,8 +1,12 @@
 from bank import Bank
+from kir import Kir
 import time
 
+kir = Kir()
 bank_id=1
 newBank = Bank(bank_id)
+
+kir.add_bank(newBank)
 t = 1
 
 MY_ID = 3

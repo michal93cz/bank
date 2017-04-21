@@ -12,6 +12,9 @@ class Bank:
         self.clients = []
         self._historical_products = []
 
+    def set_kir(self, kir):
+        self.kir = kir
+
     def makeClient(self, id):
         self.clients.append(id)
 
@@ -87,6 +90,7 @@ class Bank:
 
         if accountFrom.get_bank_id() != accountTo.get_bank_id():
             print("Przelew miedzy bankowy")
+            self.kir.make_transfer(accountTo.get_bank_id(), amount, accountTo.getId())
 
         if accountFrom.withdraw(amount, True):
             accountTo.deposit(amount, True)
@@ -96,6 +100,14 @@ class Bank:
             accountTo.getHistory().append(h_to)
             return True
         return False
+
+    def outgoing_transfer(self, accountTo, amount):
+        # todo: dopisać historie
+        product = self.getProductById(accountTo.getId)
+        if product == False:
+            return False
+        accountTo.deposit(amount, True)
+        return True
 
     def getProductById(self, productId):
         for product in self.products:
