@@ -4,7 +4,8 @@ from credit import Credit
 from history import History
 
 class Bank:
-    def __init__(self):
+    def __init__(self, bank_id):
+        self.bank_id = bank_id
         self.products = []
         self.raports = []
         self.operations = []
@@ -27,7 +28,7 @@ class Bank:
         return self.history
 
     def makeAccount(self, userId, productId):
-        account = BankAccount(userId, productId)
+        account = BankAccount(self.bank_id, userId, productId)
         self.products.append(account)
         return account
 

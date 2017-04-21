@@ -4,9 +4,9 @@ from history import History
 
 
 class BankAccount(BankProduct):
-    def __init__(self, user_id, product_id, debit=50):
+    def __init__(self, bank_id: int, user_id: int, product_id: int, debit=50):
         self._account_balance = 0
-        BankProduct.__init__(self, user_id=user_id, product_id=product_id, type='account')
+        BankProduct.__init__(self, bank_id = bank_id, user_id=user_id, product_id=product_id, type='account')
         self.debit = Debit(debit)
         self._history.append(History("Account opened", self.getId()))
 

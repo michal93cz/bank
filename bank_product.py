@@ -3,10 +3,11 @@ from Interests.interest import Interest
 
 class BankProduct:
 
-    def __init__(self, user_id, product_id, type):
+    def __init__(self, bank_id: int, user_id: int, product_id: int, type):
         self._user_id = user_id
         self._product_id = product_id
         self._type = type
+        self._bank_id = bank_id
         self._history = []
         self._interest = AccountInterestA(self)
 
