@@ -103,10 +103,10 @@ class Bank:
 
     def outgoing_transfer(self, accountTo, amount):
         # todo: dopisać historie
-        product = self.getProductById(accountTo.getId)
+        product = self.getProductById(accountTo)
         if product == False:
             return False
-        accountTo.deposit(amount, True)
+        product.deposit(amount, True)
         return True
 
     def getProductById(self, productId):
