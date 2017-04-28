@@ -4,6 +4,7 @@ from bank_account import BankAccount
 
 
 class ReportVisitor:
+    # todo: dopisać metody raportowania
     def visit_credit(self, credit: Credit):
         pass
 
