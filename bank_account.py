@@ -1,7 +1,7 @@
 from bank_product import BankProduct
 from debit import Debit
 from history import History
-
+from visitor import Visitor
 
 class BankAccount(BankProduct):
     def __init__(self, bank_id: int, user_id: int, product_id: int, debit=50):
@@ -68,3 +68,6 @@ class BankAccount(BankProduct):
 
     def get_bank_id(self):
         return self._bank_id
+
+    def accept(self, visitor: Visitor):
+        visitor.visitInvestment(self)
