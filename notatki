@@ -21,8 +21,9 @@ do banku dodać identyfikator
 
 
 
+DO ZROBIENIA
 
-potem wzorzec dekorator
+1. wzorzec dekorator
 
 Na poczatek kazdy nowy uzytkownik nie moze tworzyc debetu, tworzenie debetu za pomoca dekoratora
 
@@ -33,3 +34,6 @@ wszystko co zwiazane z debetem wyrzucic do osobnej czesci, napisac inaczej metod
 
 w koncie debetowym przeciazyc metode wyplata, uzywamy srodkow ktorych mamy ze zwyklego konta a potem dopiero pobierane z debetu
 przeciazyc metode wplata, w pierwszej kolejnosci splacamy debet
+
+2. Raportowanie danych z kredytu/konta/banku z wykorzystaniem wzorca visitor
+
