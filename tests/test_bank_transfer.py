@@ -31,7 +31,7 @@ class TestBankTransfer(unittest.TestCase):
     def test_rollback(self):
         money = 1000
         self.first_bank_client_account.deposit(money)
-        self.second_bank_client_account.close_product()
+        self.second_bank.closeProduct(self.second_bank_client_account.getId())
         result = self.first_bank.transfer(self.first_bank_client_account, self.second_bank_client_account, money)
         self.assertEqual(result, False, "Transfer should't be done")
         self.assertEqual(self.first_bank_client_account.getBalance(), money, "First client should still have a money")
