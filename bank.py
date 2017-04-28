@@ -90,6 +90,8 @@ class Bank:
 
         if accountFrom.get_bank_id() != accountTo.get_bank_id():
             print("Przelew miedzy bankowy")
+            if accountFrom.current_account_balance() < amount:
+                return False
             result = self.kir.make_transfer(accountTo.get_bank_id(), amount, accountTo.getId())
             if result == False:
                 return result
