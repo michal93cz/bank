@@ -5,19 +5,19 @@ from reportVisitor import ReportVisitor
 
 class Visitor:
     def visit(self, element):
-        if(isinstance(element, Credit)):
-            self.visitCredit(element)
-        elif(isinstance(element, Investment)):
+        if isinstance(element, Credit):
+            self.visit_credit(element)
+        elif isinstance(element, Investment):
             self.visitInvestment(element)
-        elif(isinstance(element, BankAccount)):
-            self.visit(element)
+        elif isinstance(element, BankAccount):
+            self.visitBankAccount(element)
 
-    def visitCredit(self, credit):
+    def visit_credit(self, credit: Credit):
         pass
 
-    def visitInvestment(self, investment):
+    def visit_investment(self, investment: Investment):
         pass
 
-    def visitBankAccount(self, bankAccount):
+    def visit_bank_account(self, bank_account: BankAccount):
         pass
 

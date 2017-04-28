@@ -2,12 +2,14 @@ from credit import Credit
 from investment import Investment
 from bank_account import BankAccount
 
+
 class ReportVisitor:
-    def visitCredit(self, credit):
+    def visit_credit(self, credit: Credit):
         pass
 
-    def visitInvestment(self, investment):
+    def visit_investment(self, investment: Investment):
         pass
 
-    def visitBankAccount(self, bankAccount):
+    def visit_bank_account(self, bank_account: BankAccount):
         pass
+
