@@ -14,7 +14,7 @@ class Credit(BankProduct):
         self._number_of_installment = number_of_installment
         self._installment_to_pay = number_of_installment
         self._interest = CreditInterest()
-        account.deposit(money)
+#        account.deposit(money)
         self._history.append(History("Credit started with value: " + str(money), self.getId()))
 
     def pay_one_installment(self):
