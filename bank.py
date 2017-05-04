@@ -7,6 +7,8 @@ from history import History
 from cashLimitVisitor import CashLimitVisitor
 from Operations.deposit import Deposit
 from Operations.withdraw import Withdraw
+from Operations.invest import Invest
+from Operations.borrow import Borrow
 from Operations.between_account_transfer import BetweenAccountTransfer
 
 
@@ -43,11 +45,19 @@ class Bank:
 
     def withdraw(self, account_from, amount):
         operation = Withdraw(account_from, amount)
-        operation.execute()
+        account_from.doOperation(operation)
+
+    def invest(self, account_from, amount):
+        operation = Invest(account_from, amount)
+        account_from.doOperation(operation)
+
+    def borrow(self, account_to, amount):
+        operation = Borrow(account_to, amount)
+        account_to.doOperation(operation)
 
     def accountTransfer(self, account_from, account_to, amount):
         operation = BetweenAccountTransfer(account_from, account_to, amount)
-        operation.execute()
+        account_from.doOperation(operation)
 
     def makeAccount(self, userId, productId):
         account = BankAccount(self.bank_id, userId, productId)
@@ -65,6 +75,7 @@ class Bank:
             raise ValueError("Investment value must be greater than zero!")
         investment = Investment(date, amount, account, interest, userId, productId)
         self.products.append(investment)
+        self.invest(account, amount)
         return investment
 
     def makeCredit(self, money, account, end_date, userId, productId, number_of_installment):
@@ -72,6 +83,7 @@ class Bank:
             raise ValueError("Credit value must be greater than zero!")
         credit = Credit(money, account, end_date, userId, productId, number_of_installment)
         self.products.append(credit)
+        self.borrow(account, money)
         return credit
 
     def getUserProducts(self, userId):
