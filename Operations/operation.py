@@ -1,7 +1,7 @@
-from abc import ABCMeta, abstractmethod
+from abc import abstractmethod
 
 
-class Command:
+class Operation:
     @abstractmethod
     def execute(self):
         pass

@@ -5,6 +5,9 @@ from investment import Investment
 from credit import Credit
 from history import History
 from cashLimitVisitor import CashLimitVisitor
+from Operations.deposit import Deposit
+from Operations.withdraw import Withdraw
+from Operations.between_account_transfer import BetweenAccountTransfer
 
 
 class Bank:
@@ -33,6 +36,18 @@ class Bank:
 
     def getHistory(self):
         return self.history
+
+    def deposit(self, account_to, amount):
+        operation = Deposit(account_to, amount)
+        account_to.doOperation(operation)
+
+    def withdraw(self, account_from, amount):
+        operation = Withdraw(account_from, amount)
+        operation.execute()
+
+    def accountTransfer(self, account_from, account_to, amount):
+        operation = BetweenAccountTransfer(account_from, account_to, amount)
+        operation.execute()
 
     def makeAccount(self, userId, productId):
         account = BankAccount(self.bank_id, userId, productId)
