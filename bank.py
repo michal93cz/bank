@@ -106,8 +106,8 @@ class Bank:
             accountTo.getHistory().append(h_to)
             return True
 
-        # TODO: skąd to się wzięło, po co to jest i jak się ma do tego wyżej?
-        if accountFrom.withdraw(amount, True):
+        # TODO: skąd to się wzięło, po co to jest i jak się ma do tego wyżej? <- to jest transfer w obrębie banku, dodałem elifa
+        elif accountFrom.withdraw(amount, True):
             accountTo.deposit(amount, True)
             h_from = History("Outgoing transfer to " + str(accountTo.getId()) + ", value: "+str(amount), accountFrom.getId())
             h_to = History("Incoming transfer from " + str(accountFrom.getId()) + ", value: " + str(amount), accountTo.getId())

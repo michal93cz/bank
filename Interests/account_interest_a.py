@@ -1,9 +1,8 @@
 from Interests.interest import Interest
-from bank_product import BankProduct
 
 
 class AccountInterestA(Interest):
-    def get_interests_value(self, product: BankProduct):
+    def get_interests_value(self, product):
         money = product.getBalance()
 
         if money < 1000:

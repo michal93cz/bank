@@ -70,5 +70,5 @@ class BankAccount(BankProduct):
     def get_bank_id(self):
         return self._bank_id
 
-    def accept(self, visitor: Visitor):
+    def accept(self, visitor):
         visitor.visitInvestment(self)

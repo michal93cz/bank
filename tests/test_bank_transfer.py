@@ -2,6 +2,7 @@ import unittest
 from bank import Bank
 from kir import Kir
 
+
 class TestBankTransfer(unittest.TestCase):
     def setUp(self):
         kir = Kir()
