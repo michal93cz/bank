@@ -3,6 +3,7 @@ from debit import Debit
 from history import History
 from visitor import Visitor
 
+
 class BankAccount(BankProduct):
     def __init__(self, bank_id: int, user_id: int, product_id: int, debit=50):
         self._account_balance = 0

@@ -1,5 +1,3 @@
-from visitor import Visitor
-
 class BankElement:
-    def accept(self, visitor: Visitor):
+    def accept(self, visitor):
         pass
