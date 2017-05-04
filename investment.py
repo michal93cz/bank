@@ -2,7 +2,7 @@
 from bank_product import BankProduct
 import time
 from history import History
-from visitor import Visitor
+
 
 class Investment(BankProduct):
     def __init__(self, endDate, amount, account, interest, user_id, product_id):
@@ -38,5 +38,5 @@ class Investment(BankProduct):
     def getBalance(self):
         return self._investment_amount
 
-    def accept(self, visitor: Visitor):
+    def accept(self, visitor):
         visitor.visitInvestment(self)

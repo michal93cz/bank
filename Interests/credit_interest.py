@@ -1,10 +1,9 @@
 from Interests.interest import Interest
-from bank_product import BankProduct
 
 
 class CreditInterest(Interest):
 
-    def __init__(self, b: BankProduct):
+    def __init__(self, b):
         Interest.__init__(self, b)
         self._percent = 3
 

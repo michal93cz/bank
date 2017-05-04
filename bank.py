@@ -4,6 +4,7 @@ from credit import Credit
 from history import History
 from reportVisitor import ReportVisitor
 
+
 class Bank:
     def __init__(self, bank_id):
         self.bank_id = bank_id
