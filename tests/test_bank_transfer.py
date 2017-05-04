@@ -13,15 +13,20 @@ class TestBankTransfer(unittest.TestCase):
 
         first_client_id = 1
         second_client_id = 2
+        third_client_id = 3
         first_bank_client = self.first_bank.makeClient(first_client_id)
         second_bank_client = self.second_bank.makeClient(second_client_id)
+        second_bank_client2 = self.second_bank.makeClient(third_client_id)
         self.first_bank_client_account = self.first_bank.makeAccount(first_client_id, 3)
         self.second_bank_client_account = self.second_bank.makeAccount(second_client_id, 4)
+        self.second_bank_client_account2 = self.second_bank.makeAccount(third_client_id, 5)
 
     def test_transfer_to_another_bank(self):
         money = 100
-        first_client_money = self.first_bank_client_account.get_account_balance();
-        second_client_money = self.second_bank_client_account.get_account_balance();
+        b1 = self.first_bank
+        b2 = self.second_bank
+        first_client_money = self.first_bank_client_account.get_account_balance()
+        second_client_money = self.second_bank_client_account.get_account_balance()
         self.first_bank_client_account.deposit(money)
         result = self.first_bank.transfer(self.first_bank_client_account, self.second_bank_client_account, money)
         self.assertEqual(result, True, "Transfer error")
@@ -31,7 +36,7 @@ class TestBankTransfer(unittest.TestCase):
     def test_rollback(self):
         money = 1000
         self.first_bank_client_account.deposit(money)
-        self.second_bank.closeProduct(self.second_bank_client_account.getId())
-        result = self.first_bank.transfer(self.first_bank_client_account, self.second_bank_client_account, money)
+        self.second_bank.closeProduct(self.second_bank_client_account2.getId())
+        result = self.first_bank.transfer(self.first_bank_client_account, self.second_bank_client_account2, money)
         self.assertEqual(result, False, "Transfer should't be done")
         self.assertEqual(self.first_bank_client_account.getBalance(), money, "First client should still have a money")
