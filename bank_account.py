@@ -1,25 +1,18 @@
+from bank_account_component import BankAccountComponent
 from bank_product import BankProduct
-from debit import Debit
 from history import History
 from visitor import Visitor
 
 
-class BankAccount(BankProduct):
-    def __init__(self, bank_id: int, user_id: int, product_id: int, debit=50):
+class BankAccount(BankProduct, BankAccountComponent):
+    def __init__(self, bank_id: int, user_id: int, product_id: int):
         self._account_balance = 0
         BankProduct.__init__(self, bank_id = bank_id, user_id=user_id, product_id=product_id, type='account')
-        self.debit = Debit(debit)
         self._history.append(History("Account opened", self.getId()))
 
     def close_product(self):
-        if self.debit.get_current_debit() > 0:
-            print("You can't close account until your debit is not equal 0")
-            return False
         self._history.append(History("Account closed", self.getId()))
         return True
-
-    def getBalance(self):
-        return self._account_balance
 
     def get_account_balance(self):
         return self._account_balance
@@ -28,16 +21,13 @@ class BankAccount(BankProduct):
         self._account_balance = value
 
     def withdraw(self, money, transfer=False):
-        if money > self._account_balance + (self.debit.get_max_debit()-self.debit.get_current_debit()):
+        if money > self._account_balance:
             print('Not enough money for withdraw.')
             return 0
         if money < 1:
             print('Money which you want to withdraw must be greater than zero!')
             return 0
         self._account_balance -= money
-        if self._account_balance < 0:
-            self.debit.extend_debit(self._account_balance*(-1))
-            self._account_balance = 0
         if not transfer:
             self._history.append(History('Withdraw ' + str(money), self.getId()))
         return money
@@ -46,13 +36,8 @@ class BankAccount(BankProduct):
         print('Deposit ' + str(money))
         if not transfer:
             self._history.append(History('Deposit ' + str(money), self.getId()))
-        rest = self.debit.cut_debit(money)
-        self._account_balance += rest
+        self._account_balance += money
         return money
-
-    def current_account_balance(self):
-        print('Current account balance is ' + str(self._account_balance-self.debit.get_current_debit()))
-        return self._account_balance-self.debit.get_current_debit()
 
     def pay_interest(self, value):
         if value > self._account_balance + (self.debit.get_max_debit()-self.debit.get_current_debit()):
@@ -70,5 +55,5 @@ class BankAccount(BankProduct):
     def get_bank_id(self):
         return self._bank_id
 
-    def accept(self, visitor):
+    def accept(self, visitor: Visitor):
         visitor.visitInvestment(self)

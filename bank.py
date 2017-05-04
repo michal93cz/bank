@@ -1,4 +1,6 @@
 from bank_account import BankAccount
+from bank_account_component import BankAccountComponent
+from debit_bank_account import DebitBankAccount
 from investment import Investment
 from credit import Credit
 from history import History
@@ -37,6 +39,12 @@ class Bank:
         self.products.append(account)
         return account
 
+    def makeDebitAccount(self, userId, productId):
+        account = BankAccount(self.bank_id, userId, productId)
+        debit_account = DebitBankAccount(account)
+        self.products.append(debit_account)
+        return debit_account
+
     def makeInvestment(self, date, amount, account, interest, userId, productId):
         if amount <= 0:
             raise ValueError("Investment value must be greater than zero!")
@@ -62,7 +70,7 @@ class Bank:
     def getUserAccounts(self, userId):
         userProducts = []
         for product in self.products:
-            if product.getOwner() == userId and type(product) == BankAccount:
+            if product.getOwner() == userId and isinstance(product, BankAccountComponent):
                 userProducts.append(product)
 
         return userProducts
@@ -92,7 +100,7 @@ class Bank:
 
         if accountFrom.get_bank_id() != accountTo.get_bank_id():
             print("Przelew miedzy bankowy")
-            if accountFrom.current_account_balance() < amount:
+            if accountFrom.get_account_balance() < amount:
                 return False
             result = self.kir.make_transfer(accountTo.get_bank_id(), amount, accountTo.getId())
             if result == False:
@@ -106,7 +114,6 @@ class Bank:
             accountTo.getHistory().append(h_to)
             return True
 
-        # TODO: skąd to się wzięło, po co to jest i jak się ma do tego wyżej? <- to jest transfer w obrębie banku, dodałem elifa
         elif accountFrom.withdraw(amount, True):
             accountTo.deposit(amount, True)
             h_from = History("Outgoing transfer to " + str(accountTo.getId()) + ", value: "+str(amount), accountFrom.getId())
