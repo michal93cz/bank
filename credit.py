@@ -1,8 +1,8 @@
-from bank_product import BankProduct
 import time
 from Interests.credit_interest import CreditInterest
 from history import History
-
+from visitor import Visitor
+from bank_product import BankProduct
 
 class Credit(BankProduct):
     def __init__(self, money, account, end_date, user_id, product_id, number_of_installment):
@@ -52,3 +52,6 @@ class Credit(BankProduct):
 
     def getBalance(self):
         return self._money
+
+    def accept(self, visitor: Visitor):
+        visitor.visitInvestment(self)

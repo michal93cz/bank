@@ -1,7 +1,6 @@
 from Interests.interest import Interest
 
 
-
 class AccountInterestA(Interest):
     def __init__(self, b):
         Interest.__init__(self, b)

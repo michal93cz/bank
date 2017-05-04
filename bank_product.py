@@ -1,8 +1,9 @@
 from Interests.account_interest_a import AccountInterestA
 from Interests.interest import Interest
+from bank_element import BankElement
 
 
-class BankProduct:
+class BankProduct(BankElement):
 
     def __init__(self, bank_id: int, user_id: int, product_id: int, type):
         self._user_id = user_id

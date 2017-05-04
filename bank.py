@@ -2,6 +2,7 @@ from bank_account import BankAccount
 from investment import Investment
 from credit import Credit
 from history import History
+from reportVisitor import ReportVisitor
 
 class Bank:
     def __init__(self, bank_id):
@@ -148,3 +149,12 @@ class Bank:
         # source: https://stackoverflow.com/questions/5055812/sort-python-list-of-objects-by-date
         history.sort(key=lambda r: r.get_date())
         return history
+
+    def doReport(self, report: ReportVisitor):
+        result = []
+        for product in self.products:
+            result.append(product.accept(report))
+
+        return result
+
+
