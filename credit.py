@@ -5,15 +5,15 @@ from bank_product import BankProduct
 
 
 class Credit(BankProduct):
-    def __init__(self, money, account, end_date, user_id, product_id, number_of_installment):
-        BankProduct.__init__(self, user_id=user_id, product_id=product_id, type='credit')
+    def __init__(self, money, account, end_date, user_id, product_id, number_of_installment, bank_id):
+        BankProduct.__init__(self, bank_id=bank_id, user_id=user_id, product_id=product_id, type='credit')
         self._money = money
         self._account = account
         self._begin_date = time.asctime(time.localtime(time.time()))
         self._end_date = end_date
         self._number_of_installment = number_of_installment
         self._installment_to_pay = number_of_installment
-        self._interest = CreditInterest(value=money, percent=5)
+        self._interest = CreditInterest()
         account.deposit(money)
         self._history.append(History("Credit started with value: " + str(money), self.getId()))
 
@@ -56,4 +56,4 @@ class Credit(BankProduct):
         return self._money
 
     def accept(self, visitor):
-        visitor.visitInvestment(self)
+        return visitor.visit_credit(self)

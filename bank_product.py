@@ -35,3 +35,6 @@ class BankProduct(BankElement):
 
     def getInterests(self):
         self._interest.get_interests_value(self)
+
+    def accept(self, visitor):
+        pass

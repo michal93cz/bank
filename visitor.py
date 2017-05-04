@@ -9,9 +9,9 @@ class Visitor:
         if isinstance(element, Credit):
             self.visit_credit(element)
         elif isinstance(element, Investment):
-            self.visitInvestment(element)
+            self.visit_investment(element)
         elif isinstance(element, bank_account.BankAccount):
-            self.visitBankAccount(element)
+            self.visit_bank_account(element)
 
     def visit_credit(self, credit):
         pass

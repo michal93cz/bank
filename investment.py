@@ -5,14 +5,14 @@ from history import History
 
 
 class Investment(BankProduct):
-    def __init__(self, endDate, amount, account, interest, user_id, product_id):
+    def __init__(self, endDate, amount, account, interest, user_id, product_id, bank_id):
         self._starting_date = time.asctime(time.localtime(time.time()))
         self._ending_date = endDate
         self._account = account
         self._account.withdraw(amount)
         self._investment_amount = amount
         self._interest = interest
-        BankProduct.__init__(self, user_id=user_id, product_id=product_id, type='investment')
+        BankProduct.__init__(self, user_id=user_id, product_id=product_id, type='investment', bank_id=bank_id)
         self._history.append(History("Investment started with value: "+str(amount), self.getId()))
 
     def interest_for_date(self, date):
@@ -39,4 +39,4 @@ class Investment(BankProduct):
         return self._investment_amount
 
     def accept(self, visitor):
-        visitor.visitInvestment(self)
+        return visitor.visit_investment(self)

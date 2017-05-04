@@ -4,7 +4,7 @@ from debit_bank_account import DebitBankAccount
 from investment import Investment
 from credit import Credit
 from history import History
-from reportVisitor import ReportVisitor
+from cashLimitVisitor import CashLimitVisitor
 
 
 class Bank:
@@ -158,7 +158,7 @@ class Bank:
         history.sort(key=lambda r: r.get_date())
         return history
 
-    def doReport(self, report: ReportVisitor):
+    def doReport(self, report: CashLimitVisitor):
         result = []
         for product in self.products:
             result.append(product.accept(report))
