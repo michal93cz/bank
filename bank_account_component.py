@@ -14,4 +14,4 @@ class BankAccountComponent:
     def withdraw(self, money: int, transfer: bool): raise NotImplemented
 
     @abstractmethod
-    def deposit(self, money: int, transfer: bool): raise NotImplemented
+    def add(self, money: int): raise NotImplemented

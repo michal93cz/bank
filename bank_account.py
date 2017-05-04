@@ -4,7 +4,7 @@ from history import History
 from visitor import Visitor
 from Operations.operation import Operation
 
-
+# ConcreteComponent ze wzoraca Decorator
 class BankAccount(BankProduct, BankAccountComponent):
     def __init__(self, bank_id: int, user_id: int, product_id: int):
         self._account_balance = 0
@@ -55,5 +55,12 @@ class BankAccount(BankProduct, BankAccountComponent):
     def add(self, amount):
         self._account_balance += amount
 
-    def subtract(self, amount):
-        self._account_balance -= amount
+    def subtract(self, money):
+        if money > self._account_balance:
+            print('Not enough money for withdraw.')
+            return False
+        if money < 1:
+            print('Money which you want to withdraw must be greater than zero!')
+            return False
+        self._account_balance -= money
+        return True
