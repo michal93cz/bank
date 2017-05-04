@@ -43,8 +43,8 @@ class BankAccount(BankProduct, BankAccountComponent):
         self._account_balance -= value
         return True
 
-    def addToHistory(self,h:History):
-        self.bank_account._history.append(h)
+    def addToHistory(self, h: History):
+        self._history.append(h)
 
     def get_bank_id(self):
         return self._bank_id

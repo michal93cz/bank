@@ -21,7 +21,7 @@ class VisitorTestCase(unittest.TestCase):
         for i in range(1, 11):
             # accounts
             account = BankAccount(bank_id=self.bank_id, user_id=1, product_id=i*10)
-            account.doOperation(Deposit(account, 300 * i))
+            self.bank.deposit(account, i * 300)
             self.accounts.append(account)
             # credits
             credit = Credit(product_id=i*20, account=account, end_date=date.today, money=100*i, user_id=1,
