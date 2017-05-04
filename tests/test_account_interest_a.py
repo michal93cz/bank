@@ -1,5 +1,4 @@
 import unittest
-from Interests.account_interest_b import AccountInterestB
 from bank_account import BankAccount
 
 
