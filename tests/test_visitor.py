@@ -7,7 +7,7 @@ from credit import Credit
 from investment import Investment
 from Interests.investment_interest import InvestmentInterest
 from cashLimitVisitor import CashLimitVisitor
-
+from Operations.deposit import Deposit
 
 class VisitorTestCase(unittest.TestCase):
     def setUp(self):
@@ -20,8 +20,8 @@ class VisitorTestCase(unittest.TestCase):
         # Prepare products
         for i in range(1, 11):
             # accounts
-            account = BankAccount(bank_id=self.bank_id, user_id=1, debit=0, product_id=i*10)
-            account.deposit(300 * i)
+            account = BankAccount(bank_id=self.bank_id, user_id=1, product_id=i*10)
+            account.doOperation(Deposit(account, 300 * i))
             self.accounts.append(account)
             # credits
             credit = Credit(product_id=i*20, account=account, end_date=date.today, money=100*i, user_id=1,

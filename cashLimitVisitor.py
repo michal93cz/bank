@@ -24,7 +24,7 @@ class CashLimitVisitor(Visitor):
 
     def visit_bank_account(self, bank_account: BankAccount):
         print('visit account')
-        if bank_account.getBalance() >= 500 and bank_account.debit.get_current_debit() >= 0:
+        if bank_account.getBalance() >= 500:
             return bank_account
         else:
             return None
