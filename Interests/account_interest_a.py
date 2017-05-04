@@ -1,12 +1,10 @@
 from Interests.interest import Interest
+from bank_product import BankProduct
 
 
 class AccountInterestA(Interest):
-    def __init__(self, b):
-        Interest.__init__(self, b)
-
-    def get_interests_value(self):
-        money = self.product.getBalance()
+    def get_interests_value(self, product: BankProduct):
+        money = product.getBalance()
 
         if money < 1000:
             percent = 0.02
@@ -15,4 +13,3 @@ class AccountInterestA(Interest):
         else:
             percent = 0.1
         return money * percent
-
