@@ -12,7 +12,7 @@ class DebitBankAccount(BankProduct, BankAccountComponent):
     def get_account_balance(self):
         return self.bank_account.get_account_balance()-self.debit.get_current_debit();
 
-    def subtract(self, money, transfer=False):
+    def subtract(self, money):
         if money > self.bank_account.get_account_balance() + (self.debit.get_max_debit()-self.debit.get_current_debit()):
             print('Not enough money for withdraw.')
             return False
@@ -26,13 +26,15 @@ class DebitBankAccount(BankProduct, BankAccountComponent):
             self.debit.extend_debit(to_debit)
             money -= to_debit
 
-        return self.bank_account.subtract(money, transfer)
+        if money == 0:
+            return True
+        return self.bank_account.subtract(money)
 
     def add(self, money):
         #print('Deposit in debit account ' + str(money))
         current_debit = self.debit.get_current_debit()
         rest = self.debit.cut_debit(money)
-        return self.bank_account.add(rest)+current_debit
+        self.bank_account.add(rest)
 
     # przesłonięte metody z BankProduct
     def close_product(self):

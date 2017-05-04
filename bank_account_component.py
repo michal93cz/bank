@@ -11,7 +11,7 @@ class BankAccountComponent:
     def get_account_balance(self): raise NotImplemented
 
     @abstractmethod
-    def withdraw(self, money: int, transfer: bool): raise NotImplemented
+    def subtract(self, money: int): raise NotImplemented
 
     @abstractmethod
     def add(self, money: int): raise NotImplemented
